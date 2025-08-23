@@ -1,0 +1,19 @@
+# VS Code inställningar (lokala till din dator)
+.vscode/
+
+# Tillfälliga filer
+*.log
+*.tmp
+
+# Kompilerade filer / cache
+*.cache
+*.bak
+
+# OS-specifika filer (Windows, macOS)
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Azure deployment output (om du exporterar JSON / temporära filer)
+*.azcli
+*.json.tmp
