@@ -8,7 +8,10 @@
     "environment": {
       "value": "dev"
     },
-    "sku": {
+    "appServiceSku": {
+      "value": "B1"
+    },
+    "storageSku": {
       "value": "Standard_LRS"
     },
     "tags": {
@@ -19,6 +22,18 @@
       }
     },
     "deployStorage": {
+      "value": true
+    },
+    "appServicePlanPrefix": {
+      "value": "myAppPlan"
+    },
+    "webAppPrefix": {
+      "value": "mywebapp"
+    },
+    "httpsOnly": {
+      "value": true
+    },
+    "isLinux": {
       "value": true
     }
   }
