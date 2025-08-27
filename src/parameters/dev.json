@@ -8,12 +8,6 @@
     "environment": {
       "value": "dev"
     },
-    "appServiceSku": {
-      "value": "B1"
-    },
-    "storageSku": {
-      "value": "Standard_LRS"
-    },
     "tags": {
       "value": {
         "owner": "murat",
@@ -24,11 +18,17 @@
     "deployStorage": {
       "value": true
     },
+    "storageSku": {
+      "value": "Standard_LRS"
+    },
     "appServicePlanPrefix": {
       "value": "myAppPlan"
     },
     "webAppPrefix": {
       "value": "mywebapp"
+    },
+    "appServiceSku": {
+      "value": "B1"
     },
     "httpsOnly": {
       "value": true
