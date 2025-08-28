@@ -46,5 +46,5 @@ module appsvc './modules/appservice.bicep' = {
 }
 
 output storageAccountName string = storage.outputs.storageAccountName
-output webAppurl string = appsvc.outputs.webAppUrl
+output webAppUrl string = appsvc.outputs.webAppUrl
 
