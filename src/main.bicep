@@ -3,6 +3,7 @@ targetScope = 'resourceGroup'
 param location string                   // "swedencentral"
 param environment string                // "dev" | "test" | "prod"
 param tags object                       // { owner, environment, costCenter }
+param storageKind string
 
 // Storage
 param storageSku string                        // "Standard_LRS"
@@ -10,12 +11,11 @@ param deployStorage bool = true         // slå av/på storage-deploy
 
 // App Service
 param appServiceSku string                // "B1" (dev/test) eller "S1" (prod)
-param httpsOnly bool = true             // OBS: namnet måste matcha din modul
-param isLinux bool = false              // eller true, välj vad du kör
+param httpsOnly bool = true             
+param isLinux bool = false
 
-param appServicePlanPrefix string       // t.ex. "asp-"
-param webAppPrefix string               // t.ex. "app-"
-
+param appServicePlanPrefix string
+param webAppPrefix string
 
 module storage './modules/storage.bicep' = {
   name : 'storage'
@@ -25,6 +25,7 @@ module storage './modules/storage.bicep' = {
     tags: tags
     environment: environment
     deployStorage: deployStorage
+    storageKind: storageKind
   }
 }
 

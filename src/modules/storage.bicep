@@ -5,6 +5,7 @@ param location string
 param tags object
 param environment string
 param storageSku string
+param storageKind string
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = if (deployStorage) {
   name: '${environment}${uniqueString(resourceGroup().id)}'
@@ -12,7 +13,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-01-01' = if (dep
   sku: {
     name: storageSku
   }
-  kind: 'StorageV2'
+  kind:  storageKind
   tags: tags
 }
 

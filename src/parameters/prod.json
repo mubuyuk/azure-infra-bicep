@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "swedencentral"
+    },
+    "environment": {
+      "value": "prod"
+    },
+    "tags": {
+      "value": {
+        "owner": "murat",
+        "environment": "prod",
+        "costCenter": "bicep-labb"
+      }
+    },
+    "deployStorage": {
+      "value": true
+    },
+    "storageSku": {
+      "value": "Standard_LRS"
+    },
+    "storageKind": {
+      "value": "StorageV2"
+    },
+    "appServicePlanPrefix": {
+      "value": "myAppPlan"
+    },
+    "webAppPrefix": {
+      "value": "mywebapp"
+    },
+    "appServiceSku": {
+      "value": "S1"
+    },
+    "httpsOnly": {
+      "value": true
+    },
+    "isLinux": {
+      "value": true
+    }
+  }
+}

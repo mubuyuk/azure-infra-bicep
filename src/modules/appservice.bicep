@@ -19,13 +19,13 @@ param isLinux bool = true
 param appServicePlanPrefix string
 param webAppPrefix string
 
-var appServicePlanName = '${appServicePlanPrefix}${environment}'
-var webAppName = '${webAppPrefix}${environment}${uniqueString(resourceGroup().id)}'
+var appServiceName = '${appServicePlanPrefix}-${environment}'
+var webAppName = toLower('${webAppPrefix}-${environment}-${uniqueString(resourceGroup().id)}')
 
 
 // lokalt namn, kräver inte globalt unikt namn
-resource appServicePlanResource 'Microsoft.Web/serverfarms@2024-11-01' = {
-  name: appServicePlanName
+resource appService 'Microsoft.Web/serverfarms@2024-11-01' = {
+  name: appServiceName
   location: location
   sku: {
     name: appServiceSku
@@ -43,7 +43,7 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
   location: location
 
   properties: {
-    serverFarmId: appServicePlanResource.id
+    serverFarmId: appService.id
     httpsOnly: httpsOnly
   }
 
@@ -53,5 +53,5 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
 // skriv ut Web App URL.
 output webAppUrl string = 'https://${webApp.properties.defaultHostName}'
 
-output appServicePlanOut string = appServicePlanResource.name
+output appServiceOut string = appService.name
 output webAppNameOut string = webApp.name
