@@ -5,8 +5,10 @@ param location string
 param tags object
 
 
-resource RGmurat 'Microsoft.Resources/resourceGroups@2025-04-01' = {
+resource rgmurat 'Microsoft.Resources/resourceGroups@2025-04-01' = {
   name: resourceGroupName
   location: location
   tags: tags
 }
+
+output rgmuratId string = rgmurat.id

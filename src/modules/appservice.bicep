@@ -23,7 +23,7 @@ var appServiceName = '${appServicePlanPrefix}-${environment}'
 var webAppName = toLower('${webAppPrefix}-${environment}-${uniqueString(resourceGroup().id)}')
 
 
-// lokalt namn, kräver inte globalt unikt namn
+// App service plan, lokalt namn, kräver inte globalt unikt namn
 resource appService 'Microsoft.Web/serverfarms@2024-11-01' = {
   name: appServiceName
   location: location
@@ -41,17 +41,14 @@ resource appService 'Microsoft.Web/serverfarms@2024-11-01' = {
 resource webApp 'Microsoft.Web/sites@2024-11-01' = {
   name: webAppName
   location: location
-
   properties: {
     serverFarmId: appService.id
     httpsOnly: httpsOnly
   }
-
   tags: tags
 }
 
 // skriv ut Web App URL.
 output webAppUrl string = 'https://${webApp.properties.defaultHostName}'
-
 output appServiceOut string = appService.name
 output webAppNameOut string = webApp.name
