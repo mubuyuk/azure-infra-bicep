@@ -17,6 +17,18 @@ param isLinux bool = true
 param appServicePlanPrefix string         //Prefix för App Service Plan, "myAppPlan"
 param webAppPrefix string                 //('Prefix för Web App, "mywebapp"')
 
+// Autoscale
+param enableAutoscale bool
+param autoscaleMin string
+param autoscaleDefault string
+param autoscaleMax string
+param autoscaleCpuOut int
+param autoscaleCpuIn int
+param autoscaleTimeWindow string
+param autoscaleTimeGrain string
+param autoscaleCooldown string
+
+
 module storage './modules/storage.bicep' = {
   name : 'storage-${environment}'
   params: {
@@ -45,6 +57,24 @@ module appsvc './modules/appservice.bicep' = {
   }
 }
 
+
+var autoscalePrefix = '${appServicePlanPrefix}-${environment}'
+
+module Autoscale './modules/autoscale.bicep' = if (enableAutoscale) {
+  name: 'autoscale-${environment}'
+  params: {
+    appServicePlanId: appsvc.outputs.appServicePlanId
+    namePrefix: autoscalePrefix
+    minCapacity: autoscaleMin
+    defaultCapacity: autoscaleDefault
+    maxCapacity: autoscaleMax
+    cpuScaleOutThreshold: autoscaleCpuOut
+    cpuScaleInThreshold: autoscaleCpuIn
+    timeWindow: autoscaleTimeWindow
+    timeGrain: autoscaleTimeGrain
+    cooldown: autoscaleCooldown
+  }
+}
+
 output storageAccountName string = storage.outputs.storageAccountName
 output webAppUrl string = appsvc.outputs.webAppUrl
-

@@ -1,29 +1,17 @@
-// Allt i denna modul skapas i en befintlig Resource Group
 targetScope = 'resourceGroup'
 
-//region ex "swedencentral"
-param location string
-
-// ex. test, dev, prod
-param environment string
-
-// prisplan ex. B1,
-param appServiceSku string
-
-// taggas ex. owner: murat
-param tags object
-
+param location string               //region ex "swedencentral"
+param environment string            // ex. test, dev, prod
+param appServiceSku string          // prisplan ex. B1,
+param tags object                   // taggas ex. owner: murat
 param httpsOnly bool = true
 param isLinux bool = true
-
 param appServicePlanPrefix string
 param webAppPrefix string
 
 var appServiceName = '${appServicePlanPrefix}-${environment}'
 var webAppName = toLower('${webAppPrefix}-${environment}-${uniqueString(resourceGroup().id)}')
 
-
-// App service plan, lokalt namn, kräver inte globalt unikt namn
 resource appService 'Microsoft.Web/serverfarms@2024-11-01' = {
   name: appServiceName
   location: location
@@ -35,7 +23,6 @@ resource appService 'Microsoft.Web/serverfarms@2024-11-01' = {
   }
   tags: tags
 }
-
 
 
 resource webApp 'Microsoft.Web/sites@2024-11-01' = {
@@ -52,3 +39,4 @@ resource webApp 'Microsoft.Web/sites@2024-11-01' = {
 output webAppUrl string = 'https://${webApp.properties.defaultHostName}'
 output appServiceOut string = appService.name
 output webAppNameOut string = webApp.name
+output appServicePlanId string = appService.id

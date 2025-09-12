@@ -2,12 +2,8 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
-      "value": "swedencentral"
-    },
-    "environment": {
-      "value": "test"
-    },
+    "location": { "value": "swedencentral" },
+    "environment": { "value": "test" },
     "tags": {
       "value": {
         "owner": "murat",
@@ -16,32 +12,16 @@
       }
     },
 
+    "storageSku": { "value": "Standard_LRS" },
+    "storageKind": { "value": "StorageV2" },
+    "deployStorage": { "value": true },
 
-    "storageSku": {
-      "value": "Standard_LRS"
-    },
-    "storageKind": {
-      "value": "StorageV2"
-    },
-    "deployStorage": {
-      "value": true
-    },
+    "appServicePlanPrefix": { "value": "myAppPlan" },
+    "webAppPrefix": { "value": "mywebapp" },
+    "appServiceSku": { "value": "B1" },
+    "httpsOnly": { "value": true },
+    "isLinux": { "value": true },
 
-    
-    "appServicePlanPrefix": {
-      "value": "myAppPlan"
-    },
-    "webAppPrefix": {
-      "value": "mywebapp"
-    },
-    "appServiceSku": {
-      "value": "B1"
-    },
-    "httpsOnly": {
-      "value": true
-    },
-    "isLinux": {
-      "value": true
-    }
+    "enableAutoscale": { "value": false }
   }
 }

@@ -42,6 +42,16 @@
     },
     "isLinux": {
       "value": true
-    }
+    },
+
+    "enableAutoscale": { "value": true },
+    "autoscaleMin": { "value": "1" },
+    "autoscaleDefault": { "value": "1" },
+    "autoscaleMax": { "value": "5" },
+    "autoscaleCpuOut": { "value": 70 },
+    "autoscaleCpuIn": { "value": 30 },
+    "autoscaleTimeWindow": { "value": "PT5M" },
+    "autoscaleTimeGrain": { "value": "PT1M" },
+    "autoscaleCooldown": { "value": "PT5M" }
   }
 }
